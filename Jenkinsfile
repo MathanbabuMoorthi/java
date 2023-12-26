@@ -9,7 +9,7 @@ pipeline{
         stage('Build'){
             steps{
                  script {
-                    def javaSourceDir = 'src\\java'
+                    def javaSourceDir = 'src\\main\\java'
 
                     def classesDir = 'target\\classes'
                     bat "mkdir ${classesDir}"
