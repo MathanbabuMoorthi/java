@@ -11,7 +11,7 @@ pipeline{
                  script {
                     def javaSourceDir = 'src\\main\\java'
 
-                    def classesDir = 'target\\classes'
+                    def classesDir = 'target\\class'
                     bat "mkdir ${classesDir}"
 
                     bat "javac -d ${classesDir} ${javaSourceDir}\\*.java"
