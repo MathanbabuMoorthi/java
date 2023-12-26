@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     def javaSourceDir = 'src/main/java'
-                    def classesDir = 'target/classes'
+                    def classesDir = 'target//classes'
                     
                     bat "mkdir ${classesDir}"
                     bat "javac -d ${classesDir} ${javaSourceDir}/App.java ${javaSourceDir}/Car.java ${javaSourceDir}/CarTest.java"
