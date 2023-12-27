@@ -18,10 +18,9 @@ pipeline {
         stage('Build'){
              steps {
                 script {
-                    def javaSourcePath = 'src'
-                    def targetPath = 'target\\class'
-                    bat "dir /s /b ${javaSourcePath}\\*.java > sources.txt"
-                    bat "javac -d ${targetPath} @sources.txt"
+                    def javaSourcePath = 'src/Car.java'
+                    bat 'mkdir target/class'
+                    bat "javac -d target/class ${javaSourceFile}"
                 }
             }
         }
