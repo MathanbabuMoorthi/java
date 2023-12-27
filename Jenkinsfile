@@ -32,6 +32,7 @@ pipeline {
         }
         success {
             script {
+                echo 'the build is success and the test genrated successfully'  
                 emailext subject: 'Build Status',
                           body: 'Build was a success.',
                           to: 'mr.mathan5555@gmail.com',
