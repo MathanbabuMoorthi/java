@@ -15,6 +15,16 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Build'){
+             steps {
+                script {
+                    def javaSourcePath = 'src'
+                    def targetPath = 'target\\class'
+                    bat "mkdir ${targetPath}"
+                    bat "javac -d ${targetPath} ${javaSourcePath}\\**\\*.java"
+                }
+            }
+        }
     }
 
     post {
