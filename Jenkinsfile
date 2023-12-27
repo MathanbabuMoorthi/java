@@ -1,23 +1,40 @@
 pipeline{
     agent any
     stages{
-         stage('Clean Workspace') {
+        stage('Clean Workspace') {
             steps {
                 script {
                     deleteDir()
                 }
             }
         }
-        stage('Build'){
+        stage('Checkout'){
             steps{
-                 script {
-                    def javaSourceDir = 'java\\junit-automation\\src'
-                    def classesDir = 'target\\files'
-                    bat "mkdir ${classesDir}"
-                    bat "javac -d ${classesDir} ${javaSourceDir}\\App.java ${javaSourceDir}\\Car.java ${javaSourceDir}\\CarTest.java"
-
+                checkout scm
                 }
+        }
+        post{
+            always{
+                junit 'TEST-junit-jupiter.xml'
+            }
+            success{
+                emailtext(
+                    subject: 'Build Status',
+                    body: 'Build was a success.',
+                    to: 'mr.mathan5555@gmail.com',
+                    attachlog: true
+                )
+            }
+            failure{
+                emailtext(
+                    subject: 'Build Status',
+                    body:'Build was a failure',
+                    to: 'mr.mathan5555@gmail.com',
+                    attachlog: true
+                )
             }
         }
+        
+        
     }
 }
