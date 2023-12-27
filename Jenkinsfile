@@ -20,8 +20,8 @@ pipeline {
                 script {
                     def javaSourcePath = 'src'
                     def targetPath = 'target\\class'
-                    bat "mkdir ${targetPath}"
-                    bat "javac -d ${targetPath} ${javaSourcePath}\\**\\*.java"
+                    bat "dir /s /b ${javaSourcePath}\\*.java > sources.txt"
+                    bat "javac -d ${targetPath} @sources.txt"
                 }
             }
         }
