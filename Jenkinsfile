@@ -19,7 +19,7 @@ pipeline {
 
     post {
         always {
-            junit 'TEST-junit-jupiter.xml'
+            junit 'src/reports/TEST-junit-jupiter.xml'
         }
         success {
             script {
