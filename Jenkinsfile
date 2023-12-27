@@ -1,6 +1,7 @@
-pipeline{
+pipeline {
     agent any
-    stages{
+    
+    stages {
         stage('Clean Workspace') {
             steps {
                 script {
@@ -8,33 +9,33 @@ pipeline{
                 }
             }
         }
-        stage('Checkout'){
-            steps{
+        
+        stage('Checkout') {
+            steps {
                 checkout scm
-                }
-        }
-        post{
-            always{
-                junit 'TEST-junit-jupiter.xml'
-            }
-            success{
-                emailtext(
-                    subject: 'Build Status',
-                    body: 'Build was a success.',
-                    to: 'mr.mathan5555@gmail.com',
-                    attachlog: true
-                )
-            }
-            failure{
-                emailtext(
-                    subject: 'Build Status',
-                    body:'Build was a failure',
-                    to: 'mr.mathan5555@gmail.com',
-                    attachlog: true
-                )
             }
         }
-        
-        
+    }
+
+    post {
+        always {
+            junit 'TEST-junit-jupiter.xml'
+        }
+        success {
+            script {
+                emailext subject: 'Build Status',
+                          body: 'Build was a success.',
+                          to: 'mr.mathan5555@gmail.com',
+                          attachLog: true
+            }
+        }
+        failure {
+            script {
+                emailext subject: 'Build Status',
+                          body: 'Build was a failure',
+                          to: 'mr.mathan5555@gmail.com',
+                          attachLog: true
+            }
+        }
     }
 }
