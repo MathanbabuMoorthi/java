@@ -32,7 +32,8 @@ pipeline {
         }
         success {
             script {
-                echo 'the build is success and the test genrated successfully'  
+                echo 'the build is success and the test genrated successfully'
+                echo 'the webhook is working'
                 emailext subject: 'Build Status',
                           body: 'Build was a success.',
                           to: 'mathanbabu.moorthi@expleogroup.com',
